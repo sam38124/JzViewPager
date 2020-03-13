@@ -1,0 +1,2 @@
+include ':app', ':jzviewpager'
+rootProject.name='JzViewPager'
