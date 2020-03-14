@@ -36,7 +36,6 @@ lateinit var rootview:View
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if(::rootview.isInitialized){return rootview}
         rootview=inflater.inflate(R.layout.fragment_jz_view_pager, container, false)
         adapter=MyPagerAdapter(fragmentManager!!)
         rootview.pager.adapter=adapter
@@ -56,6 +55,7 @@ lateinit var rootview:View
 
         return rootview
     }
+
     public inner class MyPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
         override fun getItem(i: Int): Fragment {
@@ -114,7 +114,9 @@ fun setTimer(a:Long):JzViewPager{
         super.onPause()
         timer.cancel()
     }
-
+fun isInitialized():Boolean{
+    return ::rootview.isInitialized
+}
 
 
 }
