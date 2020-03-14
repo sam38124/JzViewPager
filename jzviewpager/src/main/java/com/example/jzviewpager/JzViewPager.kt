@@ -40,21 +40,20 @@ lateinit var rootview:View
         rootview=inflater.inflate(R.layout.fragment_jz_view_pager, container, false)
         adapter=MyPagerAdapter(fragmentManager!!)
         rootview.pager.adapter=adapter
-        if(::callback.isInitialized){
+
             rootview.pager.setOnPageChangeListener(object : ViewPager.OnPageChangeListener{
                 override fun onPageScrollStateChanged(state: Int) {
-                    callback.onPageScrollStateChanged(state)
+                    if(::callback.isInitialized){  callback.onPageScrollStateChanged(state)}
                     scrollState=state
                 }
                 override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                    callback.onPageScrolled(position,positionOffset,positionOffsetPixels)
+                    if(::callback.isInitialized){   callback.onPageScrolled(position,positionOffset,positionOffsetPixels)}
                 }
                 override fun onPageSelected(position: Int) {
-                    callback.onPageSelected(position)
+                    if(::callback.isInitialized){   callback.onPageSelected(position)}
                 }
             })
 
-        }
         return rootview
     }
     public inner class MyPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
