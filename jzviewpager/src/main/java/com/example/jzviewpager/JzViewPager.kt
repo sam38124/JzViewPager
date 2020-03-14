@@ -56,7 +56,7 @@ lateinit var rootview:View
         return rootview
     }
 
-    public inner class MyPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+    public inner class MyPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         override fun getItem(i: Int): Fragment {
             return fragments[i]
