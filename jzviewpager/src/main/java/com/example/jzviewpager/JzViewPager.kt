@@ -37,7 +37,8 @@ lateinit var rootview:View
         savedInstanceState: Bundle?
     ): View? {
         rootview=inflater.inflate(R.layout.fragment_jz_view_pager, container, false)
-        adapter=MyPagerAdapter(fragmentManager!!)
+
+        adapter=MyPagerAdapter(activity!!.supportFragmentManager)
         rootview.pager.adapter=adapter
 
             rootview.pager.setOnPageChangeListener(object : ViewPager.OnPageChangeListener{
@@ -56,7 +57,7 @@ lateinit var rootview:View
         return rootview
     }
 
-    public inner class MyPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    public inner class MyPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
         override fun getItem(i: Int): Fragment {
             return fragments[i]
